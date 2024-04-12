@@ -12,7 +12,6 @@ jobs:
           mkdir security-app
           cp *.go security-app
           cp go.mod security-app
-          cp -r internal security-app
           cp -r pkg security-app  
           zip -r scan-files.zip security-app
           ls
