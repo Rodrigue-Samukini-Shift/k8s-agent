@@ -8,9 +8,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: packaged file
-        run: |
-            cp -r . security-app
-            zip scan-files.zip security-app
+        run: zip scan-files.zip security-app
       - name: Checkout security actions
         uses: actions/checkout@v4
         with:
