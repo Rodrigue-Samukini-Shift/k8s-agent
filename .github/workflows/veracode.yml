@@ -6,6 +6,11 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v4
+
+      - name: packaged file
+        run: |
+            cp -r . security-app
+            zip scan-files.zip security-app
       - name: Checkout security actions
         uses: actions/checkout@v4
         with:
@@ -25,14 +30,14 @@ jobs:
         with:
           v_api_id: ${{ secrets.VERACODE_API_ID}}
           v_api_key: ${{ secrets.VERACODE_API_SECRET_KEY }}
-          package_to_scan: $PACKAGE_FILE_NAME
+          package_to_scan: scan-files.zip
       - name: Veracode SAST upload scan to UI
         if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
         uses: ./.github/actions/security/sastupload
         with:
           v_api_id: ${{ secrets.VERACODE_API_ID}}
           v_api_key: ${{ secrets.VERACODE_API_SECRET_KEY }}
-          package_to_scan: $PACKAGE_FILE_NAME
+          package_to_scan: scan-files.zip
       - name: Veracode SCA scan
         uses: ./.github/actions/security/sca
         with:
