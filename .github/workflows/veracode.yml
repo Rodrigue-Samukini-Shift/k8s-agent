@@ -8,7 +8,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: packaged file
-        run: zip scan-files.zip security-app
+        run: |
+          mkdir security-app
+          cp *.go security-app
+          cp go.mod security-app
+          cp -r internal security-app
+          cp -r pkg security-app  
+          zip -r scan-files.zip security-app
       - name: Checkout security actions
         uses: actions/checkout@v4
         with:
