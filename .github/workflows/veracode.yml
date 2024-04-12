@@ -15,6 +15,7 @@ jobs:
           cp -r internal security-app
           cp -r pkg security-app  
           zip -r scan-files.zip security-app
+          ls
       - name: Checkout security actions
         uses: actions/checkout@v4
         with:
